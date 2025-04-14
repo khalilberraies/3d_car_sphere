@@ -45,4 +45,3 @@ shape = SubResource( 2 )
 [node name="DebugMesh" type="MeshInstance" parent="Ball"]
 visible = false
 mesh = SubResource( 4 )
-material/0 = null

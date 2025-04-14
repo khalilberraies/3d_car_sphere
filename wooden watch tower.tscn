@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/kenney_racing_kit/red.material" type="Material" id=1]
+[ext_resource path="res://wooden watch tower/wooden watch tower.glb" type="PackedScene" id=2]
+
+[node name="wooden watch tower" instance=ExtResource( 2 )]
+
+[node name="watchtowerHigh" parent="." index="0"]
+material/0 = ExtResource( 1 )
