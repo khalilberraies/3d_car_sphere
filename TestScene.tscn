@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://tracks/track_2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/kenney_racing_kit/barrierWall.glb" type="PackedScene" id=2]
@@ -59,12 +59,14 @@
 [ext_resource path="res://assets/kenney_car_kit/van.glb" type="PackedScene" id=57]
 [ext_resource path="res://assets/kenney_car_kit/truckFlat.glb" type="PackedScene" id=58]
 [ext_resource path="res://My plant/My plant.glb" type="PackedScene" id=59]
-[ext_resource path="res://Horse.tscn" type="PackedScene" id=60]
 [ext_resource path="res://wooden watch tower.tscn" type="PackedScene" id=61]
 [ext_resource path="res://Button.gd" type="Script" id=62]
 [ext_resource path="res://Button2.gd" type="Script" id=63]
+[ext_resource path="res://Mytheme.tres" type="Theme" id=64]
 
 [sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="BoxShape" id=2]
 
 [node name="TestScene" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06628, 1.56051, -4.98368 )
@@ -81,6 +83,7 @@ directional_shadow_normal_bias = 0.5
 
 [node name="CarSUV" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57.089, 0, 5.858 )
+visible = false
 
 [node name="CarMesh" parent="CarSUV" index="0"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
@@ -111,7 +114,7 @@ transform = Transform( -4.80825e-07, 0, 20, 0, 1, 0, -11, 0, -8.74228e-07, 60.93
 environment = ExtResource( 5 )
 
 [node name="carTruck" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.3047, 3.58154, -44.053 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -81.5346, 3.58154, -44.4029 )
 
 [node name="CarMesh" parent="carTruck" index="0"]
 transform = Transform( 0.0168241, 0, 0.999858, 0, 1, 0, -0.999858, 0, 0.0168241, 112.065, -3.70241, 50.4316 )
@@ -126,6 +129,8 @@ script = ExtResource( 7 )
 [node name="Camera" type="Camera" parent="carTruck/CarMesh/Spatial"]
 transform = Transform( 0.999988, 0.0049042, 0.00029286, -0.00490421, 0.992883, 0.118996, 0.000292804, -0.118996, 0.992895, 1.3839, 0.0916224, -1.32367 )
 fov = 51.7797
+
+[node name="LidarRays" type="Spatial" parent="carTruck/CarMesh" index="4"]
 
 [node name="Ball" parent="carTruck" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.106, -2.34913, 50.5477 )
@@ -282,9 +287,6 @@ transform = Transform( 10.9982, 0, -0.197159, 0, 11, 0, 0.197159, 0, 10.9982, -1
 
 [node name="grandStandCovered" parent="grandStandAwning" instance=ExtResource( 12 )]
 transform = Transform( -0.998329, 0, -0.0577907, 0, 1, 0, 0.0577907, 0, -0.998329, 0.19004, -0.0769509, 0.0783451 )
-
-[node name="grandStandAwning2" parent="grandStandAwning" instance=ExtResource( 9 )]
-transform = Transform( 0.3, 0, 1.39698e-09, 0, 0.3, 0, -1.39698e-09, 0, 0.3, -4.13386, 0, -9.92861 )
 
 [node name="grandStandAwning3" parent="grandStandAwning" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, -2.57014, 0, 0.0460735 )
@@ -853,9 +855,6 @@ transform = Transform( 0.868182, 0, -0.496247, 0, 1, 0, 0.496247, 0, 0.868182, -
 [node name="My plant5" parent="My plant" instance=ExtResource( 59 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4218, 0, 70.1004 )
 
-[node name="Horse" parent="." instance=ExtResource( 60 )]
-transform = Transform( 0.00944204, 0, 0.000329361, 0, 0.01, 0, -0.00329361, 0, 0.000944204, 34.7375, 3.49414, -100.711 )
-
 [node name="Eolic" parent="." instance=ExtResource( 13 )]
 transform = Transform( 0.0126024, -6.32836e-08, -0.877855, 0, 0.724, -7.67572e-08, 0.692885, 1.15103e-09, 0.0159668, 80.7577, 0.628683, -3.7482 )
 
@@ -917,23 +916,67 @@ transform = Transform( 1, 0, 9.31323e-10, 0, 1, 0, -9.31323e-10, 0, 1, -0.390385
 transform = Transform( 1, 0, 9.31323e-10, 0, 1, 0, -9.31323e-10, 0, 1, -0.197961, 0, 2.90029 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 886.0
-margin_top = 8.0
-margin_right = 1008.0
-margin_bottom = 28.0
+margin_left = 773.0
+margin_top = 12.0
+margin_right = 991.0
+margin_bottom = 48.0
+theme = ExtResource( 64 )
 text = "Choisir le scénario 2"
 script = ExtResource( 62 )
 
+[node name="MessageTimer" type="Timer" parent="Button"]
+
+[node name="MessageLabel" type="Label" parent="Button"]
+margin_left = -199.0
+margin_top = 3.0
+margin_right = -10.0
+margin_bottom = 62.0
+
 [node name="Button2" type="Button" parent="."]
-margin_left = 885.0
-margin_top = 72.0
-margin_right = 1009.0
-margin_bottom = 92.0
+margin_left = 774.0
+margin_top = 142.0
+margin_right = 999.0
+margin_bottom = 178.0
+theme = ExtResource( 64 )
 text = "Changer les hyperparamètres"
 script = ExtResource( 63 )
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="Area" type="Area" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.575453, 2.35571, 5.67205 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.131, -2.76315, -1.27947, 0 )
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 23.0
+margin_top = 6.0
+margin_right = 178.739
+margin_bottom = 33.0
+rect_scale = Vector2( 1.573, 1.256 )
+text = "Les hyperparamètres"
+
+[node name="Buttonai" type="Button" parent="."]
+margin_left = 416.0
+margin_top = 12.0
+margin_right = 642.0
+margin_bottom = 39.0
+theme = ExtResource( 64 )
+text = "Redémarrer l'apprentissage"
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 769.0
+margin_top = 73.0
+margin_right = 1001.0
+margin_bottom = 121.0
+theme = ExtResource( 64 )
+text = "Choisir le scénario 3"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="timeout" from="Button/MessageTimer" to="Button" method="_on_MessageTimer_timeout"]
 [connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="body_entered" from="Area" to="carTruck" method="_on_Area_body_entered"]
+[connection signal="pressed" from="Buttonai" to="carTruck" method="_on_Buttonai_pressed"]
 
 [editable path="CarSUV"]
 [editable path="CarSUV/CarMesh"]

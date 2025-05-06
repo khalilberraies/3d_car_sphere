@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The BADDEST"
+config/name="The BADDEST 3"
 run/main_scene="res://log.tscn"
 config/icon="res://icon.png"
 
